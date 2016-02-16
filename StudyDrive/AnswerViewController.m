@@ -74,7 +74,9 @@
         for (int i=0; i<arr.count; i++) {
             AnswerModel *model = arr[i];
             if ([model.sid isEqualToString:_number]) {
-                [_arrayQuestions addObject:model];
+                if (_mtype==[model.mtype intValue]) {
+                    [_arrayQuestions addObject:model];
+                }
             }
         }
         _answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 -80) andDataArray:_arrayQuestions];

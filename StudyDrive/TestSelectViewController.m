@@ -80,6 +80,11 @@
         TestSelectTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         con.number = cell.numberLabel.text;
         con.type = 3;//专项练习
+        if (indexPath.row%2==0) {
+            con.mtype = 1;
+        } else {
+            con.mtype = 2;
+        }
     }
     [self.navigationController pushViewController:con animated:YES];
 }
