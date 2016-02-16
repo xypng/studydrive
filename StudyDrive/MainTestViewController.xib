@@ -7,6 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTestViewController">
             <connections>
+                <outlet property="btnNoAnswerTest" destination="VQ8-9y-vAk" id="vvd-gG-upd"/>
+                <outlet property="btnRealTest" destination="l8j-O2-CxC" id="Ulq-Qz-GtS"/>
+                <outlet property="labPassTest" destination="LrW-qH-SA8" id="0G7-em-3vh"/>
+                <outlet property="labScore" destination="exh-er-SwR" id="v6I-TU-OcS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -108,14 +112,38 @@
                                 <action selector="click:" destination="-1" eventType="touchUpInside" id="fis-Jc-Bwc"/>
                             </connections>
                         </button>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的成绩:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exh-er-SwR">
+                            <rect key="frame" x="172" y="152" width="257" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="Asl-Ef-bpL"/>
+                                <constraint firstAttribute="width" constant="257" id="DMM-Nw-9GF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜你考试通过!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LrW-qH-SA8">
+                            <rect key="frame" x="8" y="206" width="572" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="572" id="8u4-8Z-n0n"/>
+                                <constraint firstAttribute="height" constant="50" id="bck-bj-KDd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="l8j-O2-CxC" firstAttribute="leading" secondItem="Drb-RN-7mt" secondAttribute="leading" constant="20" id="0ns-hS-vCh"/>
                         <constraint firstAttribute="height" constant="334" id="N9P-57-sTo"/>
                         <constraint firstItem="VQ8-9y-vAk" firstAttribute="top" secondItem="Drb-RN-7mt" secondAttribute="top" constant="152" id="Seb-J8-WkZ"/>
+                        <constraint firstItem="exh-er-SwR" firstAttribute="top" secondItem="Drb-RN-7mt" secondAttribute="top" constant="152" id="UpC-91-g0Y"/>
                         <constraint firstAttribute="trailing" secondItem="VQ8-9y-vAk" secondAttribute="trailing" constant="20" id="byu-QZ-qLP"/>
                         <constraint firstItem="l8j-O2-CxC" firstAttribute="top" secondItem="Drb-RN-7mt" secondAttribute="top" constant="152" id="gLZ-Rh-SIb"/>
+                        <constraint firstItem="LrW-qH-SA8" firstAttribute="centerX" secondItem="Drb-RN-7mt" secondAttribute="centerX" constant="-6" id="kft-Ct-eQZ"/>
+                        <constraint firstItem="LrW-qH-SA8" firstAttribute="top" secondItem="Drb-RN-7mt" secondAttribute="top" constant="206" id="lNl-Bs-h5X"/>
+                        <constraint firstItem="exh-er-SwR" firstAttribute="centerX" secondItem="Drb-RN-7mt" secondAttribute="centerX" id="rEb-e2-dI0"/>
                     </constraints>
                 </view>
             </subviews>

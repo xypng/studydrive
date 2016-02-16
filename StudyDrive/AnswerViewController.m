@@ -12,12 +12,14 @@
 #import "AnswerModel.h"
 #import "SelectModelView.h"
 #import "SeetView.h"
+#import "SaveDataManager.h"
 
 @interface AnswerViewController ()<SheetViewDelegate, scrolldelegate, UIAlertViewDelegate>
 {
     AnswerView *_answerView;
     SelectModelView *_selectModelView;
     SeetView *_sheetView;
+    int _seconds;
 }
 @end
 
@@ -37,6 +39,7 @@
         [self creatToolBarView];
     }else {
         [self creatToolBarViewNoViewAnswer];
+        [self creatTimeDown];
     }
     [self creatSheetView];
 }
@@ -83,6 +86,8 @@
     } else if (_type==4){
         //全真模拟考试
         NSArray *arr = [MyDataManager getData:Answer];
+        NSArray *rights = [SaveDataManager getAnswerWrongQuestion];
+        NSArray *wrongs = [SaveDataManager getAnswerRightQuestion];
         NSMutableArray *arraytemp = [NSMutableArray arrayWithArray:arr];
         for (int i=0; i<100; i++) {
             int index = arc4random()%arraytemp.count;
@@ -124,6 +129,46 @@
         [item2 setTarget:self];
         [item2 setAction:@selector(clickBarButton:)];
         self.navigationItem.rightBarButtonItem = item2;
+    } else if (_type==6) {
+        //做错题
+        NSArray *arrAll = [MyDataManager getData:Answer];
+        NSArray *arrWrongs = [SaveDataManager getAnswerWrongQuestion];
+        _arrayQuestions = [[NSMutableArray alloc] init];
+        for (AnswerModel *model in arrAll) {
+            for (NSNumber *num in arrWrongs) {
+                if ([model.mid intValue]==[num intValue]) {
+                    [_arrayQuestions addObject:model];
+                }
+            }
+        }
+        if (_arrayQuestions.count==0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有错题" message:@"你还没有做错过题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            alert.tag = 103;
+            alert.delegate = self;
+            [alert show];
+            return;
+        }
+        _answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 -80) andDataArray:_arrayQuestions];
+    } else if (_type==7) {
+        //做收藏的题
+        NSArray *arrAll = [MyDataManager getData:Answer];
+        NSArray *arrCollects = [SaveDataManager getcollectQuestion];
+        _arrayQuestions = [[NSMutableArray alloc] init];
+        for (AnswerModel *model in arrAll) {
+            for (NSNumber *num in arrCollects) {
+                if ([model.mid intValue]==[num intValue]) {
+                    [_arrayQuestions addObject:model];
+                }
+            }
+        }
+        if (_arrayQuestions.count==0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有收藏题" message:@"你还没有收藏过题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            alert.tag = 104;
+            alert.delegate = self;
+            [alert show];
+            return;
+        }
+        _answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 -80) andDataArray:_arrayQuestions];
     }
     _answerView.delegate = self;
     [self.view addSubview:_answerView];
@@ -150,30 +195,6 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex==0) {
-        return;
-    }
-    switch (alertView.tag) {
-        case 101:
-            //返回
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-            
-            break;
-        case 102:
-            //交卷
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
 - (void)creatSheetView {
     _sheetView = [[SeetView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-80) andsuperFrame:self.view andCount:_arrayQuestions.count];
     _sheetView.delegate = self;
@@ -188,6 +209,24 @@
     [self.view addSubview:_selectModelView];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"答题模式" style:UIBarButtonItemStylePlain target:self action:@selector(modelChange)];
     self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)creatTimeDown {
+    _seconds = 3600;
+    self.title = [NSString stringWithFormat:@"%02d:%02d", _seconds/60, _seconds%60];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeDown:) userInfo:nil repeats:YES];
+}
+
+- (void)timeDown:(NSTimer *)timer {
+    _seconds--;
+    self.title = [NSString stringWithFormat:@"%02d:%02d", _seconds/60, _seconds%60];
+    if (_seconds==0) {
+        [timer invalidate];
+        timer = nil;
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"交卷" message:@"时间到了,你必须交卷了" delegate:self cancelButtonTitle:@"哦!" otherButtonTitles:nil, nil];
+        av.tag = 105;
+        [av show];
+    }
 }
 
 - (void)modelChange{
@@ -269,7 +308,8 @@
             break;
         case 303://收藏本题
         {
-            
+            AnswerModel *model = [_answerView getFitAnswerModel];
+            [SaveDataManager addcollectQuestion:[model.mid intValue]];
         }
             break;
         default:
@@ -338,9 +378,77 @@
     labelright.text = [NSString stringWithFormat:@"%d",right];
     labelwrong.text = [NSString stringWithFormat:@"%d",wrong];
     labelnoanswer.text = [NSString stringWithFormat:@"%d",noanswer];
-    labelright.backgroundColor = [UIColor whiteColor];
-    labelwrong.backgroundColor = [UIColor whiteColor];
-    labelnoanswer.backgroundColor = [UIColor whiteColor];
+}
+
+- (int)getWriteAnswerScore {
+    int right = 0;
+    int wrong = 0;
+    int noanswer = 0;
+    AnswerModel *model;
+    for (int i=0; i<_answerView.answeredArrar.count; i++) {
+        model = _arrayQuestions[i];
+        int rightindex;
+        if ([model.mtype intValue]==1) {
+            rightindex = ([model.manswer characterAtIndex:0]-'A') + 1;
+        } else {
+            rightindex = [model.manswer isEqualToString:@"对"]?1:2;
+        }
+        if ([_answerView.answeredArrar[i] intValue]==0) {
+            noanswer++;
+        } else if([_answerView.answeredArrar[i] intValue]==rightindex) {
+            right++;
+        } else {
+            wrong++;
+        }
+    }
+    return right;
+}
+
+#pragma mark alertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (alertView.tag) {
+        case 101:
+            //返回
+        {
+            if (buttonIndex==0) {
+                return;
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            
+            break;
+        case 102:
+            //交卷
+        {
+            if (buttonIndex==0) {
+                return;
+            }
+            [_saveTestScoreDelegate saveTestScore:[self getWriteAnswerScore]];
+//            [self.navigationController popViewControllerAnimated:YES];
+        }
+        case 103:
+            //没有错题
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            
+            break;
+        case 104:
+            //没有收藏的题
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case 105:
+            //考试时间到
+        {
+            [_saveTestScoreDelegate saveTestScore:[self getWriteAnswerScore]];
+//            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 /*

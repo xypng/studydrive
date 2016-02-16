@@ -12,6 +12,8 @@
 #import "MyDataManager.h"
 #import "AnswerViewController.h"
 #import "MainTestViewController.h"
+#import "MyTestScoresViewController.h"
+#import "SaveDataManager.h"
 
 
 @interface FirstViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -54,6 +56,8 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeSystem];
         btn.frame = CGRectMake(self.view.frame.size.width/4*i + self.view.frame.size.width/4/2 - 30, self.view.frame.size.height - 64 - 100, 60, 60);
         [btn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%d", i + 12]] forState:UIControlStateNormal];
+        btn.tag = 101 + i;
+        [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
         
         UILabel * lab = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/4*i + self.view.frame.size.width/4/2 -30, self.view.frame.size.height - 64 - 40, 60, 30)];
@@ -61,6 +65,49 @@
         lab.text = arr[i];
         lab.font = [UIFont boldSystemFontOfSize:13];
         [self.view addSubview:lab];
+    }
+}
+
+- (void)click:(UIButton *)button {
+    switch (button.tag) {
+        case 101:
+        {
+            AnswerViewController *answerViewcontroleer = [[AnswerViewController alloc] init];
+            UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
+            answerViewcontroleer.type=6;
+            [self.navigationController pushViewController:answerViewcontroleer animated:YES];
+        }
+            break;
+        case 102:
+        {
+            AnswerViewController *answerViewcontroleer = [[AnswerViewController alloc] init];
+            UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
+            answerViewcontroleer.type=7;
+            [self.navigationController pushViewController:answerViewcontroleer animated:YES];
+        }
+            break;
+        case 103:
+        {
+            MyTestScoresViewController *con = [[MyTestScoresViewController alloc] init];
+            con.title = @"我的成绩";
+            con.arrTestScores = [SaveDataManager getTestScores];
+            UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
+            [self.navigationController pushViewController:con animated:YES];
+        }
+            break;
+        case 104:
+        {
+            
+        }
+            break;
+        default:
+            break;
     }
 }
 

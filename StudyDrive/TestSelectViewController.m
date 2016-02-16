@@ -59,6 +59,9 @@
         cell.numberLabel.layer.masksToBounds = YES;
         cell.numberLabel.layer.cornerRadius = 8;
     }
+    if (indexPath.row%2!=0) {
+        cell.backgroundColor=[UIColor colorWithRed:204/255 green:1 blue:1 alpha:0.5];
+    }
     if (_type==1) {
         TestSelectModel *dataModel = _myArray[indexPath.row];
         cell.numberLabel.text = dataModel.pID;

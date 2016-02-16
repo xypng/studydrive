@@ -10,6 +10,7 @@
 #import "AnswerTableViewCell.h"
 #import "AnswerModel.h"
 #import "Tools.h"
+#import "SaveDataManager.h"
 
 #define SIZE self.frame.size
 #define QUESTIONSIZE 16 //问题字体大小
@@ -117,6 +118,20 @@
     NSUInteger currentPage = [_dataArray indexOfObject:[self getFitAnswerModel:tableView]];
     if ([_answeredArrar[currentPage] intValue]==0) {
         _answeredArrar[currentPage] = [NSNumber numberWithInt:(int)(indexPath.row+1)];
+        AnswerModel *model = [self getFitAnswerModel:tableView];
+        int rightindex;
+        if ([model.mtype intValue]==1) {
+            rightindex = ([model.manswer characterAtIndex:0]-'A') + 1;
+        } else {
+            rightindex = [model.manswer isEqualToString:@"对"]?1:2;
+        }
+        if (rightindex==indexPath.row+1) {
+            //答对
+            [SaveDataManager addAnswerRightQuestion:[model.mid intValue]];
+        } else {
+            //答错
+            [SaveDataManager addAnswerWrongQuestion:[model.mid intValue]];
+        }
         [tableView reloadData];
         [_delegate answerQuestion:_answeredArrar];
     }
@@ -310,6 +325,12 @@
     }else if(tableView==_rightTableView && _currentPage==_dataArray.count-1) {
         model = _dataArray[_currentPage];
     }
+    return model;
+}
+
+- (AnswerModel *)getFitAnswerModel {
+    AnswerModel *model;
+    model = _dataArray[_currentPage];
     return model;
 }
 

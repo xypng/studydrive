@@ -193,6 +193,11 @@
 		CEC4959F1C6C885300FE4963 /* AnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC4959E1C6C885300FE4963 /* AnswerModel.m */; };
 		CEC495A21C6C8C6100FE4963 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC495A11C6C8C6100FE4963 /* Tools.m */; };
 		CECCCEB31C72F3F40041E283 /* shipin.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CECCCEB21C72F3F40041E283 /* shipin.mp4 */; };
+		CECCCEB61C734F0B0041E283 /* SaveDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCCEB51C734F0B0041E283 /* SaveDataManager.m */; };
+		CECCCEB91C738B2D0041E283 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCCEB81C738B2D0041E283 /* TestModel.m */; };
+		CECCCEBC1C739F7F0041E283 /* MyTestScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCCEBB1C739F7F0041E283 /* MyTestScoresViewController.m */; };
+		CECCCEC01C73A1FC0041E283 /* TestScoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CECCCEBE1C73A1FC0041E283 /* TestScoreTableViewCell.m */; };
+		CECCCEC11C73A1FC0041E283 /* TestScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CECCCEBF1C73A1FC0041E283 /* TestScoreTableViewCell.xib */; };
 		CECDED441C5F3E47003C74E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CECDED431C5F3E47003C74E7 /* main.m */; };
 		CECDED471C5F3E48003C74E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CECDED461C5F3E48003C74E7 /* AppDelegate.m */; };
 		CECDED4A1C5F3E48003C74E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECDED491C5F3E48003C74E7 /* ViewController.m */; };
@@ -413,6 +418,15 @@
 		CEC495A01C6C8C6100FE4963 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		CEC495A11C6C8C6100FE4963 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		CECCCEB21C72F3F40041E283 /* shipin.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = shipin.mp4; sourceTree = "<group>"; };
+		CECCCEB41C734F0B0041E283 /* SaveDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveDataManager.h; sourceTree = "<group>"; };
+		CECCCEB51C734F0B0041E283 /* SaveDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveDataManager.m; sourceTree = "<group>"; };
+		CECCCEB71C738B2D0041E283 /* TestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		CECCCEB81C738B2D0041E283 /* TestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
+		CECCCEBA1C739F7F0041E283 /* MyTestScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTestScoresViewController.h; sourceTree = "<group>"; };
+		CECCCEBB1C739F7F0041E283 /* MyTestScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTestScoresViewController.m; sourceTree = "<group>"; };
+		CECCCEBD1C73A1FC0041E283 /* TestScoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestScoreTableViewCell.h; sourceTree = "<group>"; };
+		CECCCEBE1C73A1FC0041E283 /* TestScoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestScoreTableViewCell.m; sourceTree = "<group>"; };
+		CECCCEBF1C73A1FC0041E283 /* TestScoreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestScoreTableViewCell.xib; sourceTree = "<group>"; };
 		CECDED3F1C5F3E47003C74E7 /* StudyDrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyDrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECDED431C5F3E47003C74E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CECDED451C5F3E48003C74E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -641,6 +655,8 @@
 				CEA440E21C7171E500529A88 /* WebViewController.m */,
 				CEA440E41C719EAA00529A88 /* SubjectTwoViewController.h */,
 				CEA440E51C719EAA00529A88 /* SubjectTwoViewController.m */,
+				CECCCEBA1C739F7F0041E283 /* MyTestScoresViewController.h */,
+				CECCCEBB1C739F7F0041E283 /* MyTestScoresViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -660,6 +676,9 @@
 				CEA440EB1C71A02300529A88 /* SubjectTwoTableViewCell.h */,
 				CEA440EC1C71A02300529A88 /* SubjectTwoTableViewCell.m */,
 				CEA440ED1C71A02300529A88 /* SubjectTwoTableViewCell.xib */,
+				CECCCEBD1C73A1FC0041E283 /* TestScoreTableViewCell.h */,
+				CECCCEBE1C73A1FC0041E283 /* TestScoreTableViewCell.m */,
+				CECCCEBF1C73A1FC0041E283 /* TestScoreTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -685,6 +704,8 @@
 				CEC4959E1C6C885300FE4963 /* AnswerModel.m */,
 				CEF3CBB61C705B93005F5B59 /* SubChapterModel.h */,
 				CEF3CBB71C705B93005F5B59 /* SubChapterModel.m */,
+				CECCCEB71C738B2D0041E283 /* TestModel.h */,
+				CECCCEB81C738B2D0041E283 /* TestModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -737,6 +758,8 @@
 				CECDED491C5F3E48003C74E7 /* ViewController.m */,
 				CEC495A01C6C8C6100FE4963 /* Tools.h */,
 				CEC495A11C6C8C6100FE4963 /* Tools.m */,
+				CECCCEB41C734F0B0041E283 /* SaveDataManager.h */,
+				CECCCEB51C734F0B0041E283 /* SaveDataManager.m */,
 				CECDED4B1C5F3E48003C74E7 /* Main.storyboard */,
 				CECDED4E1C5F3E48003C74E7 /* Assets.xcassets */,
 				CECDED501C5F3E48003C74E7 /* LaunchScreen.storyboard */,
@@ -866,6 +889,7 @@
 				CE4E2D4E1C6D553C0047A7C8 /* 222.png in Resources */,
 				CE4E2DD61C6D553C0047A7C8 /* 685.png in Resources */,
 				CE4E2D511C6D553C0047A7C8 /* 225.png in Resources */,
+				CECCCEC11C73A1FC0041E283 /* TestScoreTableViewCell.xib in Resources */,
 				CE4E2DAE1C6D553C0047A7C8 /* 318.png in Resources */,
 				CE4E2DA71C6D553C0047A7C8 /* 311.png in Resources */,
 				CE4E2DCE1C6D553C0047A7C8 /* 677.png in Resources */,
@@ -993,6 +1017,7 @@
 				CE4E2DE01C6DBE260047A7C8 /* SelectModelView.m in Sources */,
 				CECDED4A1C5F3E48003C74E7 /* ViewController.m in Sources */,
 				CEC494221C6C176700FE4963 /* SelectVehicleView.m in Sources */,
+				CECCCEB91C738B2D0041E283 /* TestModel.m in Sources */,
 				CEA440EE1C71A02300529A88 /* SubjectTwoTableViewCell.m in Sources */,
 				CEC495981C6C777000FE4963 /* AnswerTableViewCell.m in Sources */,
 				CEC495911C6C71C500FE4963 /* AnswerView.m in Sources */,
@@ -1002,6 +1027,7 @@
 				CEC495891C6C651800FE4963 /* MyDataManager.m in Sources */,
 				CEF3CBB81C705B93005F5B59 /* SubChapterModel.m in Sources */,
 				CEC494311C6C534A00FE4963 /* TestSelectViewController.m in Sources */,
+				CECCCEBC1C739F7F0041E283 /* MyTestScoresViewController.m in Sources */,
 				CEC495A21C6C8C6100FE4963 /* Tools.m in Sources */,
 				CEA440E61C719EAA00529A88 /* SubjectTwoViewController.m in Sources */,
 				CE4E2DDC1C6D553C0047A7C8 /* FMDatabaseQueue.m in Sources */,
@@ -1010,9 +1036,11 @@
 				CEF3CBC11C70709F005F5B59 /* MainTestViewController.m in Sources */,
 				CECDED471C5F3E48003C74E7 /* AppDelegate.m in Sources */,
 				CECDED441C5F3E47003C74E7 /* main.m in Sources */,
+				CECCCEB61C734F0B0041E283 /* SaveDataManager.m in Sources */,
 				CE4E2DDD1C6D553C0047A7C8 /* FMResultSet.m in Sources */,
 				CE4E2DDB1C6D553C0047A7C8 /* FMDatabasePool.m in Sources */,
 				CEC494351C6C563300FE4963 /* TestSelectTableViewCell.m in Sources */,
+				CECCCEC01C73A1FC0041E283 /* TestScoreTableViewCell.m in Sources */,
 				CEA440E31C7171E500529A88 /* WebViewController.m in Sources */,
 				CEC4959C1C6C807100FE4963 /* AnswerViewController.m in Sources */,
 				CEC4958D1C6C695D00FE4963 /* TestSelectModel.m in Sources */,

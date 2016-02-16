@@ -8,8 +8,14 @@
 
 #import "MainTestViewController.h"
 #import "AnswerViewController.h"
+#import "TestModel.h"
+#import "SaveDataManager.h"
 
-@interface MainTestViewController ()
+@interface MainTestViewController ()<SaveTestScoreDelegate>
+@property (weak, nonatomic) IBOutlet UIButton *btnRealTest;
+@property (weak, nonatomic) IBOutlet UIButton *btnNoAnswerTest;
+@property (weak, nonatomic) IBOutlet UILabel *labScore;
+@property (weak, nonatomic) IBOutlet UILabel *labPassTest;
 
 @end
 
@@ -31,6 +37,7 @@
         {
             AnswerViewController *avc = [[AnswerViewController alloc] init];
             avc.type = 4;
+            avc.saveTestScoreDelegate = self;
             [self.navigationController pushViewController:avc animated:YES];
         }
             break;
@@ -38,12 +45,30 @@
         {
             AnswerViewController *avc = [[AnswerViewController alloc] init];
             avc.type = 5;
+            avc.saveTestScoreDelegate = self;
             [self.navigationController pushViewController:avc animated:YES];
         }
             break;
         default:
             break;
     }
+}
+
+- (void)saveTestScore:(int)score {
+    self.btnNoAnswerTest.hidden = YES;
+    self.btnRealTest.hidden = YES;
+    self.labScore.hidden = NO;
+    self.labScore.text = [NSString stringWithFormat:@"你的成绩:%d", score];
+    self.labPassTest.hidden = NO;
+    if (score>=90) {
+        self.labPassTest.text = @"恭喜你,考试通过!";
+    } else {
+        self.labPassTest.text = @"这次考试没通过,请再接再厉!";
+    }
+    TestModel *model = [[TestModel alloc] init];
+    model.testTime = [NSDate date];
+    model.testScore = [NSNumber numberWithInt:score];
+    [SaveDataManager addTestScore:model];
 }
 
 /*

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class AnswerModel;
 @protocol scrolldelegate <NSObject>
 - (void)scrollViewDidEndDecelerating:(int)index;
 - (void)answerQuestion:(NSArray *)questionArr;
@@ -24,4 +25,5 @@
 - (instancetype)initWithFrame:(CGRect)frame andDataArray:(NSArray *)array;
 - (void)selectRightAnswer;
 - (void)reloadData;
+- (AnswerModel *)getFitAnswerModel;
 @end
