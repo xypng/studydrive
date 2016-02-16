@@ -153,6 +153,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     CGFloat height = [self getFitHeight:tableView];
+    AnswerModel *model = [self getFitAnswerModel:tableView];
+    //判断是否有图片
+    UIImage *image;
+    if (![model.mimage isEqualToString:@""]) {
+        image = [UIImage imageNamed:[model.mimage substringToIndex:model.mimage.length-4]];
+    }
+    if (image!=nil) {
+        height += 44.0;
+    }
     if (height <= 80) {
         return 80;
     }
@@ -175,13 +184,30 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    CGFloat height = [self getFitHeight:tableView];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SIZE.width, height)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, SIZE.width-20, height-20)];
-    label.text = [NSString stringWithFormat:@"%u.%@", [_dataArray indexOfObject:[self getFitAnswerModel:tableView]]+1, [[Tools getAnswerWithString:[self getFitAnswerModel:tableView].mquestion] firstObject]];
+    CGFloat heighttext = [self getFitHeight:tableView];
+    CGFloat heightimage = 0;
+    AnswerModel *model = [self getFitAnswerModel:tableView];
+    //判断是否有图片
+    UIImage *image;
+    UIImageView *imageView;
+    if (![model.mimage isEqualToString:@""]) {
+        image = [UIImage imageNamed:[model.mimage substringToIndex:model.mimage.length-4]];
+    }
+    if (image!=nil) {
+        heightimage = 40;
+        CGFloat widthimage = image.size.width*heightimage/image.size.height;
+        imageView = [[UIImageView alloc] initWithFrame:CGRectMake((SIZE.width-widthimage)/2, heighttext, widthimage, heightimage)];
+        imageView.image = image;
+    }
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SIZE.width, heighttext+heightimage+20+4)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, SIZE.width-20, heighttext-20)];
+    label.text = [NSString stringWithFormat:@"%lu.%@", [_dataArray indexOfObject:model]+1, [[Tools getAnswerWithString:model.mquestion] firstObject]];
     label.font = [UIFont systemFontOfSize:QUESTIONSIZE];
     label.numberOfLines = 0;
     [view addSubview:label];
+    if (image!=nil) {
+        [view addSubview:imageView];
+    }
     return view;
 }
 

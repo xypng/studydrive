@@ -23,7 +23,17 @@
 }
 
 + (CGSize)getSizeWithString:(NSString *)str withFont:(UIFont *)font withSize:(CGSize)size {
-    CGSize s = [str sizeWithFont:font constrainedToSize:size];
+//    CGSize s = [str sizeWithFont:font constrainedToSize:size]; deprecated
+//    CGRect textRect = [str boundingRectWithSize:size
+//                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+//                                      attributes:@{NSFontAttributeName:font}
+//                                         context:nil];
+    CGSize s;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    NSString *changeStr = [NSString stringWithFormat:@"%@-----------------", str];//下面这个方法总是算不准高度,面且每次都是差一点.
+    s = [changeStr boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
     return s;
 }
 
