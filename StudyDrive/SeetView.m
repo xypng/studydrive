@@ -52,19 +52,19 @@
     
     UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 40, 25)];
     label1.text = @"答对";
-    UILabel *labelrightnum = [[UILabel alloc] initWithFrame:CGRectMake(51, 30, 40, 25)];
+    UILabel *labelrightnum = [[UILabel alloc] initWithFrame:CGRectMake(51, 30, 20, 25)];
     labelrightnum.text = @"0";
     labelrightnum.textColor = [UIColor greenColor];
     labelrightnum.tag = 201;
-    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(92, 30, 40, 25)];
+    UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(72, 30, 40, 25)];
     label2.text = @"答错";
-    UILabel *labelwrongnum = [[UILabel alloc] initWithFrame:CGRectMake(133, 30, 40, 25)];
+    UILabel *labelwrongnum = [[UILabel alloc] initWithFrame:CGRectMake(113, 30, 20, 25)];
     labelwrongnum.text = @"0";
     labelwrongnum.textColor = [UIColor redColor];
     labelwrongnum.tag = 202;
-    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(174, 30, 40, 25)];
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(144, 30, 40, 25)];
     label3.text = @"未答";
-    UILabel *labelnoanswered = [[UILabel alloc] initWithFrame:CGRectMake(215, 30, 40, 25)];
+    UILabel *labelnoanswered = [[UILabel alloc] initWithFrame:CGRectMake(185, 30, 40, 25)];
     labelnoanswered.text = [NSString stringWithFormat:@"%d", _count];
     labelnoanswered.tag = 203;
     [self addSubview:label1];
@@ -75,8 +75,9 @@
     [self addSubview:labelwrongnum];
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    btn.frame = CGRectMake(260, 30, 80, 30);
+    btn.frame = CGRectMake(self.frame.size.width-90, 30, 80, 25);
     btn.backgroundColor = [UIColor cyanColor];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btn.layer.masksToBounds = YES;
     btn.layer.cornerRadius = 5;
     [btn setTitle:@"清空记录" forState:UIControlStateNormal];
