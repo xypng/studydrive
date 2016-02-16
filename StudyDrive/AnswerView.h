@@ -10,6 +10,7 @@
 
 @protocol scrolldelegate <NSObject>
 - (void)scrollViewDidEndDecelerating:(int)index;
+- (void)answerQuestion:(NSArray *)questionArr;
 @end
 
 @interface AnswerView : UIView

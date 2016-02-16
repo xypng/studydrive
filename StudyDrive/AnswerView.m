@@ -118,6 +118,7 @@
     if ([_answeredArrar[currentPage] intValue]==0) {
         _answeredArrar[currentPage] = [NSNumber numberWithInt:(int)(indexPath.row+1)];
         [tableView reloadData];
+        [_delegate answerQuestion:_answeredArrar];
     }
 }
 

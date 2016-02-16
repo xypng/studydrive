@@ -3,13 +3,13 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[AnswerView scrollViewDidEndDecelerating:]:AnswerView.m">
+         contextName = "-[AnswerView tableView:viewForHeaderInSection:]:AnswerView.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.delegate">
+               value = "model.mimage">
             </PersistentString>
             <PersistentString
-               value = "scrollView.contentOffset">
+               value = "[model.mimage substringToIndex:model.mimage.length-4]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -42,13 +42,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[AnswerView tableView:viewForHeaderInSection:]:AnswerView.m">
+         contextName = "-[AnswerView scrollViewDidEndDecelerating:]:AnswerView.m">
          <PersistentStrings>
             <PersistentString
-               value = "model.mimage">
+               value = "self.delegate">
             </PersistentString>
             <PersistentString
-               value = "[model.mimage substringToIndex:model.mimage.length-4]">
+               value = "scrollView.contentOffset">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -88,6 +88,37 @@
          <PersistentStrings>
             <PersistentString
                value = "[_superView viewWithTag:301]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SeetView creatView]:SeetView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "CGRectMake(5, (self.frame.size.width-80)/2, 80, 8)">
+            </PersistentString>
+            <PersistentString
+               value = "(self.frame.size.width-80)/2">
+            </PersistentString>
+            <PersistentString
+               value = "view1.frame">
+            </PersistentString>
+            <PersistentString
+               value = "self.frame.size.width">
+            </PersistentString>
+            <PersistentString
+               value = "CGRectMake(0, 70, self.frame.size.width, self.frame.size.height-70)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AnswerViewController answerQuestion:]:AnswerViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "questionArr[i]">
+            </PersistentString>
+            <PersistentString
+               value = "[model.manswer intValue]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

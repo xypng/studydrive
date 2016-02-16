@@ -295,11 +295,43 @@
     lab.text = [NSString stringWithFormat:@"%d/%d", index+1, _arrayQuestions.count];
     
     for (int i=0; i<_arrayQuestions.count; i++) {
-        UIButton *button = (UIButton *)[self.view viewWithTag:i+101];
+        UIButton *button = (UIButton *)[self.view viewWithTag:i+1001];
         button.backgroundColor = [UIColor colorWithRed:200/225.0 green:200/225.0 blue:220/225.0 alpha:1];
     }
-    UIButton *button = (UIButton *)[_sheetView viewWithTag:index+101];
+    UIButton *button = (UIButton *)[_sheetView viewWithTag:index+1001];
     button.backgroundColor = [UIColor orangeColor];
+}
+
+- (void)answerQuestion:(NSArray *)questionArr {
+    int right = 0;
+    int wrong = 0;
+    int noanswer = 0;
+    AnswerModel *model;
+    for (int i=0; i<questionArr.count; i++) {
+        model = _arrayQuestions[i];
+        int rightindex;
+        if ([model.mtype intValue]==1) {
+            rightindex = ([model.manswer characterAtIndex:0]-'A') + 1;
+        } else {
+            rightindex = [model.manswer isEqualToString:@"对"]?1:2;
+        }
+        if ([questionArr[i] intValue]==0) {
+            noanswer++;
+        } else if([questionArr[i] intValue]==rightindex) {
+            right++;
+        } else {
+            wrong++;
+        }
+    }
+    UILabel *labelright = (UILabel *)[_sheetView viewWithTag:201];
+    UILabel *labelwrong = (UILabel *)[_sheetView viewWithTag:202];
+    UILabel *labelnoanswer = (UILabel *)[_sheetView viewWithTag:203];
+    labelright.text = [NSString stringWithFormat:@"%d",right];
+    labelwrong.text = [NSString stringWithFormat:@"%d",wrong];
+    labelnoanswer.text = [NSString stringWithFormat:@"%d",noanswer];
+    labelright.backgroundColor = [UIColor whiteColor];
+    labelwrong.backgroundColor = [UIColor whiteColor];
+    labelnoanswer.backgroundColor = [UIColor whiteColor];
 }
 
 /*
