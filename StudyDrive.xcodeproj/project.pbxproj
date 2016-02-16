@@ -174,7 +174,6 @@
 		CEA440E31C7171E500529A88 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA440E21C7171E500529A88 /* WebViewController.m */; };
 		CEA440E61C719EAA00529A88 /* SubjectTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA440E51C719EAA00529A88 /* SubjectTwoViewController.m */; };
 		CEA440E91C719F8B00529A88 /* subject.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA440E71C719F8B00529A88 /* subject.png */; };
-		CEA440EA1C719F8B00529A88 /* shipin.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CEA440E81C719F8B00529A88 /* shipin.mp4 */; };
 		CEA440EE1C71A02300529A88 /* SubjectTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA440EC1C71A02300529A88 /* SubjectTwoTableViewCell.m */; };
 		CEA440EF1C71A02300529A88 /* SubjectTwoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA440ED1C71A02300529A88 /* SubjectTwoTableViewCell.xib */; };
 		CEC494221C6C176700FE4963 /* SelectVehicleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC494211C6C176700FE4963 /* SelectVehicleView.m */; };
@@ -193,6 +192,7 @@
 		CEC4959C1C6C807100FE4963 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC4959B1C6C807100FE4963 /* AnswerViewController.m */; };
 		CEC4959F1C6C885300FE4963 /* AnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC4959E1C6C885300FE4963 /* AnswerModel.m */; };
 		CEC495A21C6C8C6100FE4963 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC495A11C6C8C6100FE4963 /* Tools.m */; };
+		CECCCEB31C72F3F40041E283 /* shipin.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CECCCEB21C72F3F40041E283 /* shipin.mp4 */; };
 		CECDED441C5F3E47003C74E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CECDED431C5F3E47003C74E7 /* main.m */; };
 		CECDED471C5F3E48003C74E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CECDED461C5F3E48003C74E7 /* AppDelegate.m */; };
 		CECDED4A1C5F3E48003C74E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CECDED491C5F3E48003C74E7 /* ViewController.m */; };
@@ -381,7 +381,6 @@
 		CEA440E41C719EAA00529A88 /* SubjectTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectTwoViewController.h; sourceTree = "<group>"; };
 		CEA440E51C719EAA00529A88 /* SubjectTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectTwoViewController.m; sourceTree = "<group>"; };
 		CEA440E71C719F8B00529A88 /* subject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subject.png; sourceTree = "<group>"; };
-		CEA440E81C719F8B00529A88 /* shipin.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = shipin.mp4; sourceTree = "<group>"; };
 		CEA440EB1C71A02300529A88 /* SubjectTwoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectTwoTableViewCell.h; sourceTree = "<group>"; };
 		CEA440EC1C71A02300529A88 /* SubjectTwoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectTwoTableViewCell.m; sourceTree = "<group>"; };
 		CEA440ED1C71A02300529A88 /* SubjectTwoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubjectTwoTableViewCell.xib; sourceTree = "<group>"; };
@@ -413,6 +412,7 @@
 		CEC4959E1C6C885300FE4963 /* AnswerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerModel.m; sourceTree = "<group>"; };
 		CEC495A01C6C8C6100FE4963 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		CEC495A11C6C8C6100FE4963 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		CECCCEB21C72F3F40041E283 /* shipin.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = shipin.mp4; sourceTree = "<group>"; };
 		CECDED3F1C5F3E47003C74E7 /* StudyDrive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyDrive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECDED431C5F3E47003C74E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CECDED451C5F3E48003C74E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -707,9 +707,9 @@
 		CECDED361C5F3E47003C74E7 = {
 			isa = PBXGroup;
 			children = (
+				CECCCEB21C72F3F40041E283 /* shipin.mp4 */,
 				CEC494371C6C634C00FE4963 /* libsqlite3.tbd */,
 				CEA440E71C719F8B00529A88 /* subject.png */,
-				CEA440E81C719F8B00529A88 /* shipin.mp4 */,
 				CECDED411C5F3E47003C74E7 /* StudyDrive */,
 				CECDED401C5F3E47003C74E7 /* Products */,
 			);
@@ -888,6 +888,7 @@
 				CE4E2D421C6D553C0047A7C8 /* 210.png in Resources */,
 				CE4E2D601C6D553C0047A7C8 /* 240.png in Resources */,
 				CE4E2DAD1C6D553C0047A7C8 /* 317.png in Resources */,
+				CECCCEB31C72F3F40041E283 /* shipin.mp4 in Resources */,
 				CE4E2D5E1C6D553C0047A7C8 /* 238.png in Resources */,
 				CE4E2D631C6D553C0047A7C8 /* 243.png in Resources */,
 				CE4E2DBE1C6D553C0047A7C8 /* 334.png in Resources */,
@@ -912,7 +913,6 @@
 				CE4E2D431C6D553C0047A7C8 /* 211.png in Resources */,
 				CE4E2DD11C6D553C0047A7C8 /* 680.png in Resources */,
 				CE4E2D871C6D553C0047A7C8 /* 279.png in Resources */,
-				CEA440EA1C719F8B00529A88 /* shipin.mp4 in Resources */,
 				CE4E2DCC1C6D553C0047A7C8 /* 672.png in Resources */,
 				CE4E2D761C6D553C0047A7C8 /* 262.png in Resources */,
 				CE4E2DD71C6D553C0047A7C8 /* 687.png in Resources */,
