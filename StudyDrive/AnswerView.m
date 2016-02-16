@@ -78,6 +78,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     CGPoint point = scrollView.contentOffset;
     int page = point.x/SIZE.width;
+    [self.delegate scrollViewDidEndDecelerating:page];
     if (page < _dataArray.count-1 && page>0) {
         _scrollView.contentSize = CGSizeMake(point.x + SIZE.width*2, 0);
         _mainTableView.frame = CGRectMake(point.x, 0, SIZE.width, SIZE.height);

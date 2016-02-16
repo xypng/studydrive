@@ -6,6 +6,9 @@
          contextName = "-[AnswerView scrollViewDidEndDecelerating:]:AnswerView.m">
          <PersistentStrings>
             <PersistentString
+               value = "self.delegate">
+            </PersistentString>
+            <PersistentString
                value = "scrollView.contentOffset">
             </PersistentString>
          </PersistentStrings>
@@ -70,10 +73,21 @@
          contextName = "-[AnswerView tableView:didSelectRowAtIndexPath:]:AnswerView.m">
       </ContextState>
       <ContextState
+         contextName = "-[AnswerView tableView:heightForHeaderInSection:]:AnswerView.m">
+      </ContextState>
+      <ContextState
          contextName = "-[AnswerView getFitAnswerModel:]:AnswerView.m">
          <PersistentStrings>
             <PersistentString
                value = "tableView==_rightTableView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[SeetView click:]:SeetView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[_superView viewWithTag:301]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

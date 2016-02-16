@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol scrolldelegate <NSObject>
+- (void)scrollViewDidEndDecelerating:(int)index;
+@end
+
 @interface AnswerView : UIView
 {
     @public
     UIScrollView * _scrollView;
 }
+@property(nonatomic,weak)id<scrolldelegate> delegate;
 @property(nonatomic,assign,readonly) int currentPage;
 @property(nonatomic,strong) NSMutableArray *answeredArrar;
 - (instancetype)initWithFrame:(CGRect)frame andDataArray:(NSArray *)array;

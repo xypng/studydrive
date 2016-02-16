@@ -13,7 +13,7 @@
 #import "SelectModelView.h"
 #import "SeetView.h"
 
-@interface AnswerViewController ()<SheetViewDelegate,UIAlertViewDelegate>
+@interface AnswerViewController ()<SheetViewDelegate, scrolldelegate, UIAlertViewDelegate>
 {
     AnswerView *_answerView;
     SelectModelView *_selectModelView;
@@ -123,7 +123,7 @@
         [item2 setAction:@selector(clickBarButton:)];
         self.navigationItem.rightBarButtonItem = item2;
     }
-    
+    _answerView.delegate = self;
     [self.view addSubview:_answerView];
 }
 
@@ -211,7 +211,12 @@
         [btn addTarget:self action:@selector(toolBarClick:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 301+i;
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(btn.center.x-30, 50, 60, 20)];
-        lab.text = arr[i];
+        if (i==0) {
+            lab.text = [NSString stringWithFormat:@"%d/%d", 1, _arrayQuestions.count];
+            lab.tag = 501;
+        } else {
+            lab.text = arr[i];
+        }
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = [UIFont systemFontOfSize:12];
         [view addSubview:btn];
@@ -231,7 +236,12 @@
         [btn addTarget:self action:@selector(toolBarClick:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 301+i*2;
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(btn.center.x-30, 50, 60, 20)];
-        lab.text = arr[i];
+        if (i==0) {
+            lab.text = [NSString stringWithFormat:@"%d/%d", 1, _arrayQuestions.count];
+            lab.tag = 501;
+        } else {
+            lab.text = arr[i];
+        }
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = [UIFont systemFontOfSize:12];
         [view addSubview:btn];
@@ -275,6 +285,21 @@
     UIScrollView *scrollView = _answerView->_scrollView;
     scrollView.contentOffset = CGPointMake(scrollView.frame.size.width*index, 0);
     [scrollView.delegate scrollViewDidEndDecelerating:scrollView];
+    UILabel *lab = (UILabel *)[self.view viewWithTag:501];
+    lab.text = [NSString stringWithFormat:@"%d/%d", index+1, _arrayQuestions.count];
+}
+
+#pragma mark - scrollview delegate
+- (void)scrollViewDidEndDecelerating:(int)index {
+    UILabel *lab = (UILabel *)[self.view viewWithTag:501];
+    lab.text = [NSString stringWithFormat:@"%d/%d", index+1, _arrayQuestions.count];
+    
+    for (int i=0; i<_arrayQuestions.count; i++) {
+        UIButton *button = (UIButton *)[self.view viewWithTag:i+101];
+        button.backgroundColor = [UIColor colorWithRed:200/225.0 green:200/225.0 blue:220/225.0 alpha:1];
+    }
+    UIButton *button = (UIButton *)[_sheetView viewWithTag:index+101];
+    button.backgroundColor = [UIColor orangeColor];
 }
 
 /*

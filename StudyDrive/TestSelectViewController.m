@@ -79,7 +79,7 @@
     } else if (_type==2) {
         TestSelectTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         con.number = cell.numberLabel.text;
-        con.type = 3;//章节练习
+        con.type = 3;//专项练习
     }
     [self.navigationController pushViewController:con animated:YES];
 }
