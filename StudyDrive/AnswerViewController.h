@@ -1,0 +1,15 @@
+//
+//  AnswerViewController.h
+//  StudyDrive
+//
+//  Created by 肖奕鹏 on 16/2/11.
+//  Copyright © 2016年 xiaoyipeng. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface AnswerViewController : UIViewController
+@property(nonatomic,copy) NSString *number;
+//0章节练习,1顺序练习,2随机练习,3.专项练习,4全真摸拟考试,5优先未做题摸拟考试
+@property(nonatomic,assign) int type;
+@end

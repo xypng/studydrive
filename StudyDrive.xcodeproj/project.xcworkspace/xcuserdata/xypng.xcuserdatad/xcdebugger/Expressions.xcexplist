@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[AnswerView tableView:didSelectRowAtIndexPath:]:AnswerView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[AnswerView scrollViewDidEndDecelerating:]:AnswerView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "scrollView.contentOffset">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AnswerView tableView:cellForRowAtIndexPath:]:AnswerView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "cell.answerLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "model.manswer">
+            </PersistentString>
+            <PersistentString
+               value = "model">
+            </PersistentString>
+            <PersistentString
+               value = "cell.numberLabel.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[TestSelectViewController tableView:didSelectRowAtIndexPath:]:TestSelectViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row+1">
+            </PersistentString>
+            <PersistentString
+               value = "con.number">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AnswerView getFitAnswerModel:]:AnswerView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableView==_rightTableView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AnswerViewController creatAnswerView]:AnswerViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_number">
+            </PersistentString>
+            <PersistentString
+               value = "model.sid">
+            </PersistentString>
+            <PersistentString
+               value = "model.pid">
+            </PersistentString>
+            <PersistentString
+               value = "[model.pid isEqualToString:_number]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
