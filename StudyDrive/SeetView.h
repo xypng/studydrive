@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 @protocol SheetViewDelegate
 - (void)sheetViewClick:(int)index;
+- (void)cleanAnswerData;
 @end
 
 @interface SeetView : UIView

@@ -23,4 +23,5 @@
 @property(nonatomic,strong) NSMutableArray *answeredArrar;
 - (instancetype)initWithFrame:(CGRect)frame andDataArray:(NSArray *)array;
 - (void)selectRightAnswer;
+- (void)reloadData;
 @end

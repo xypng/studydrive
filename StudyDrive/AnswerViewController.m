@@ -289,6 +289,13 @@
     lab.text = [NSString stringWithFormat:@"%d/%d", index+1, _arrayQuestions.count];
 }
 
+- (void)cleanAnswerData {
+    for (int i=0; i<_answerView.answeredArrar.count; i++) {
+        _answerView.answeredArrar[i] = @0;
+    }
+    [_answerView reloadData];
+}
+
 #pragma mark - scrollview delegate
 - (void)scrollViewDidEndDecelerating:(int)index {
     UILabel *lab = (UILabel *)[self.view viewWithTag:501];

@@ -74,6 +74,15 @@
     [self addSubview:labelrightnum];
     [self addSubview:labelwrongnum];
     
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    btn.frame = CGRectMake(260, 30, 80, 30);
+    btn.backgroundColor = [UIColor cyanColor];
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 5;
+    [btn setTitle:@"清空记录" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(cleanData:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btn];
+    
     _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, self.frame.size.height-70)];
     _scrollView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_scrollView];
@@ -94,6 +103,17 @@
     }
     int tip = _count%6?1:0;
     _scrollView.contentSize = CGSizeMake(0, 10+(_width-16)/6*((_count/6)+tip+1));
+}
+
+- (void)cleanData:(UIButton *)btn {
+    UILabel *labelright = (UILabel *)[self viewWithTag:201];
+    UILabel *labelwrong = (UILabel *)[self viewWithTag:202];
+    UILabel *labelnoanswer = (UILabel *)[self viewWithTag:203];
+    labelright.text = [NSString stringWithFormat:@"%d", 0];
+    labelwrong.text = [NSString stringWithFormat:@"%d", 0];
+    labelnoanswer.text = [NSString stringWithFormat:@"%lu", (unsigned long)_count];
+    
+    [_delegate cleanAnswerData];
 }
 
 - (void)click:(UIButton *)btn {
