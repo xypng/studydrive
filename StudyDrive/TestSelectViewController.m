@@ -78,10 +78,12 @@
     AnswerViewController *con = [[AnswerViewController alloc] init];
     if (_type==1) {
         con.number = [NSString stringWithFormat:@"%d", indexPath.row+1];
+        con.title = @"章节练习";
         con.type = 0;//章节练习
     } else if (_type==2) {
         TestSelectTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         con.number = cell.numberLabel.text;
+        con.title = @"专项练习";
         con.type = 3;//专项练习
         if (indexPath.row%2==0) {
             con.mtype = 1;

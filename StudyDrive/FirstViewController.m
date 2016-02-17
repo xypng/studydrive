@@ -73,6 +73,7 @@
         case 101:
         {
             AnswerViewController *answerViewcontroleer = [[AnswerViewController alloc] init];
+            answerViewcontroleer.title = @"我的错题";
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
@@ -83,6 +84,7 @@
         case 102:
         {
             AnswerViewController *answerViewcontroleer = [[AnswerViewController alloc] init];
+            answerViewcontroleer.title = @"我的收藏";
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
@@ -103,7 +105,13 @@
             break;
         case 104:
         {
-            
+            MyTestScoresViewController *con = [[MyTestScoresViewController alloc] init];
+            con.title = @"练习统计";
+            con.arrTestScores = [SaveDataManager getTestScores];
+            UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
+            item.title = @"";
+            self.navigationItem.backBarButtonItem = item;
+            [self.navigationController pushViewController:con animated:YES];
         }
             break;
         default:
@@ -141,7 +149,7 @@
         {
             TestSelectViewController * con = [[TestSelectViewController alloc] init];
             con.myArray = [MyDataManager getData:Chapter];
-            con.myTitle = @"章节练习";
+            con.myTitle = @"章节";
             con.type = 1;
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
@@ -153,6 +161,7 @@
         case 1:
         {
             AnswerViewController *answerViewcontroleer = [[AnswerViewController alloc] init];
+            answerViewcontroleer.title = @"顺序练习";
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
@@ -163,6 +172,7 @@
         case 2:
         {
             AnswerViewController *answerViewcontroleer = [[AnswerViewController alloc] init];
+            answerViewcontroleer.title = @"随机练习";
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
@@ -175,7 +185,7 @@
         {
             TestSelectViewController * con = [[TestSelectViewController alloc] init];
             con.myArray = [MyDataManager getData:subChapter];
-            con.myTitle = @"专项练习";
+            con.myTitle = @"专项";
             con.type = 2;
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";

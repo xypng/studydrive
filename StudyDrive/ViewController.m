@@ -62,6 +62,7 @@
         case 105:
         {
             WebViewController * con = [[WebViewController alloc] initWithURL:@baomingxuzhi];
+            con.title = @"报名须知";
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
@@ -71,6 +72,7 @@
         case 106:
         {
             WebViewController * con = [[WebViewController alloc] initWithURL:@xinshoushanglu];
+            con.title = @"新手上路";
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
