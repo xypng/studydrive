@@ -295,12 +295,25 @@
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(btn.center.x-30, 50, 60, 20)];
         if (i==0) {
             lab.text = [NSString stringWithFormat:@"%d/%d", 1, _arrayQuestions.count];
-            lab.tag = 501;
         } else {
             lab.text = arr[i];
         }
+        lab.tag = 501+i;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = [UIFont systemFontOfSize:12];
+        //第一题可能已经收藏
+        if (i==2) {
+            AnswerModel *model = [_arrayQuestions objectAtIndex:0];
+            NSArray *collectArr = [SaveDataManager getcollectQuestion];
+            for (NSNumber *num in collectArr) {
+                if ([num intValue]==[model.mid intValue]) {
+                    [btn setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateNormal];
+                    [btn setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateHighlighted];
+                    lab.text = @"取消收藏";
+                    break;
+                }
+            }
+        }
         [view addSubview:btn];
         [view addSubview:lab];
     }
@@ -320,12 +333,25 @@
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(btn.center.x-30, 50, 60, 20)];
         if (i==0) {
             lab.text = [NSString stringWithFormat:@"%d/%d", 1, _arrayQuestions.count];
-            lab.tag = 501;
         } else {
             lab.text = arr[i];
         }
+        lab.tag = 501+i*2;
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = [UIFont systemFontOfSize:12];
+        if (i==2) {
+            //第一题可能已经收藏
+            AnswerModel *model = [_arrayQuestions objectAtIndex:0];
+            NSArray *collectArr = [SaveDataManager getcollectQuestion];
+            for (NSNumber *num in collectArr) {
+                if ([num intValue]==[model.mid intValue]) {
+                    [btn setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateNormal];
+                    [btn setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateHighlighted];
+                    lab.text = @"取消收藏";
+                    break;
+                }
+            }
+        }
         [view addSubview:btn];
         [view addSubview:lab];
     }
@@ -347,10 +373,23 @@
             [_answerView selectRightAnswer];
         }
             break;
-        case 303://收藏本题
+        case 303://收藏本题or取消收藏
         {
-            AnswerModel *model = [_answerView getFitAnswerModel];
-            [SaveDataManager addcollectQuestion:[model.mid intValue]];
+            UILabel *lab = [self.view viewWithTag:503];
+            if ([lab.text isEqualToString:@"收藏本题"]) {
+                AnswerModel *model = [_answerView getFitAnswerModel];
+                [SaveDataManager addcollectQuestion:[model.mid intValue]];
+                [button setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateNormal];
+                [button setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateHighlighted];
+                lab.text = @"取消收藏";
+            } else if ([lab.text isEqualToString:@"取消收藏"]) {
+                AnswerModel *model = [_answerView getFitAnswerModel];
+                [SaveDataManager removecollectQuestion:[model.mid intValue]];
+                UILabel *lab = [self.view viewWithTag:503];
+                [button setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateNormal];
+                [button setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateHighlighted];
+                lab.text = @"收藏本题";
+            }
         }
             break;
         default:
@@ -390,6 +429,22 @@
     }
     UIButton *button = (UIButton *)[_sheetView viewWithTag:index+1001];
     button.backgroundColor = [UIColor orangeColor];
+    
+    AnswerModel *model = [_arrayQuestions objectAtIndex:index];
+    NSArray *collectArr = [SaveDataManager getcollectQuestion];
+    UIButton *btncollet = (UIButton *)[self.view viewWithTag:303];
+    UILabel *labcollect = (UILabel *)[self.view viewWithTag:503];
+    [btncollet setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateNormal];
+    [btncollet setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateHighlighted];
+    labcollect.text = @"收藏本题";
+    for (NSNumber *num in collectArr) {
+        if ([num intValue]==[model.mid intValue]) {
+            [btncollet setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateNormal];
+            [btncollet setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateHighlighted];
+            labcollect.text = @"取消收藏";
+            break;
+        }
+    }
 }
 
 - (void)answerQuestion:(NSArray *)questionArr {
