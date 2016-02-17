@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE4038CE1C745DF300811F8E /* MyScoreGraphs.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4038CD1C745DF300811F8E /* MyScoreGraphs.m */; };
+		CE4038D11C7460FD00811F8E /* MyScoreGraphsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4038D01C7460FD00811F8E /* MyScoreGraphsViewController.m */; };
 		CE4E2D3B1C6D553C0047A7C8 /* 203.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4E2C921C6D553C0047A7C8 /* 203.png */; };
 		CE4E2D3C1C6D553C0047A7C8 /* 204.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4E2C931C6D553C0047A7C8 /* 204.png */; };
 		CE4E2D3D1C6D553C0047A7C8 /* 205.png in Resources */ = {isa = PBXBuildFile; fileRef = CE4E2C941C6D553C0047A7C8 /* 205.png */; };
@@ -211,6 +213,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE4038CC1C745DF300811F8E /* MyScoreGraphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScoreGraphs.h; sourceTree = "<group>"; };
+		CE4038CD1C745DF300811F8E /* MyScoreGraphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScoreGraphs.m; sourceTree = "<group>"; };
+		CE4038CF1C7460FD00811F8E /* MyScoreGraphsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyScoreGraphsViewController.h; sourceTree = "<group>"; };
+		CE4038D01C7460FD00811F8E /* MyScoreGraphsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyScoreGraphsViewController.m; sourceTree = "<group>"; };
 		CE4E2C921C6D553C0047A7C8 /* 203.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 203.png; sourceTree = "<group>"; };
 		CE4E2C931C6D553C0047A7C8 /* 204.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 204.png; sourceTree = "<group>"; };
 		CE4E2C941C6D553C0047A7C8 /* 205.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 205.png; sourceTree = "<group>"; };
@@ -657,6 +663,8 @@
 				CEA440E51C719EAA00529A88 /* SubjectTwoViewController.m */,
 				CECCCEBA1C739F7F0041E283 /* MyTestScoresViewController.h */,
 				CECCCEBB1C739F7F0041E283 /* MyTestScoresViewController.m */,
+				CE4038CF1C7460FD00811F8E /* MyScoreGraphsViewController.h */,
+				CE4038D01C7460FD00811F8E /* MyScoreGraphsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -721,6 +729,8 @@
 				CE4E2DDF1C6DBE260047A7C8 /* SelectModelView.m */,
 				CEF3CBB31C700D2E005F5B59 /* SeetView.h */,
 				CEF3CBB41C700D2E005F5B59 /* SeetView.m */,
+				CE4038CC1C745DF300811F8E /* MyScoreGraphs.h */,
+				CE4038CD1C745DF300811F8E /* MyScoreGraphs.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1025,12 +1035,14 @@
 				CE4E2DDA1C6D553C0047A7C8 /* FMDatabaseAdditions.m in Sources */,
 				CEC4942D1C6C382200FE4963 /* FirstTableViewCell.m in Sources */,
 				CEC495891C6C651800FE4963 /* MyDataManager.m in Sources */,
+				CE4038D11C7460FD00811F8E /* MyScoreGraphsViewController.m in Sources */,
 				CEF3CBB81C705B93005F5B59 /* SubChapterModel.m in Sources */,
 				CEC494311C6C534A00FE4963 /* TestSelectViewController.m in Sources */,
 				CECCCEBC1C739F7F0041E283 /* MyTestScoresViewController.m in Sources */,
 				CEC495A21C6C8C6100FE4963 /* Tools.m in Sources */,
 				CEA440E61C719EAA00529A88 /* SubjectTwoViewController.m in Sources */,
 				CE4E2DDC1C6D553C0047A7C8 /* FMDatabaseQueue.m in Sources */,
+				CE4038CE1C745DF300811F8E /* MyScoreGraphs.m in Sources */,
 				CEC494271C6C336200FE4963 /* FirstViewController.m in Sources */,
 				CEC4959F1C6C885300FE4963 /* AnswerModel.m in Sources */,
 				CEF3CBC11C70709F005F5B59 /* MainTestViewController.m in Sources */,

@@ -14,6 +14,7 @@
 #import "MainTestViewController.h"
 #import "MyTestScoresViewController.h"
 #import "SaveDataManager.h"
+#import "MyScoreGraphsViewController.h"
 
 
 @interface FirstViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -105,9 +106,8 @@
             break;
         case 104:
         {
-            MyTestScoresViewController *con = [[MyTestScoresViewController alloc] init];
+            MyScoreGraphsViewController *con = [[MyScoreGraphsViewController alloc] init];
             con.title = @"练习统计";
-            con.arrTestScores = [SaveDataManager getTestScores];
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
