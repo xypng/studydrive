@@ -41,7 +41,7 @@
             break;
         case Answer:
         {
-            NSString * sql = @"select mquestion,mdesc,mid,manswer,mimage,pid,pname,sid,sname,mtype FROM leaflevel";
+            NSString * sql = @"select mquestion,mdesc,mid,manswer,mimage,pid,pname,sid,sname,mtype FROM leaflevel ORDER BY mid";
             FMResultSet * resultSet = [dataBase executeQuery:sql];
             while ([resultSet next]) {
                 AnswerModel *model = [[AnswerModel alloc] init];

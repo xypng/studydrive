@@ -86,8 +86,6 @@
     } else if (_type==4){
         //全真模拟考试
         NSArray *arr = [MyDataManager getData:Answer];
-        NSArray *rights = [SaveDataManager getAnswerWrongQuestion];
-        NSArray *wrongs = [SaveDataManager getAnswerRightQuestion];
         NSMutableArray *arraytemp = [NSMutableArray arrayWithArray:arr];
         for (int i=0; i<100; i++) {
             int index = arc4random()%arraytemp.count;
@@ -109,12 +107,55 @@
         self.navigationItem.rightBarButtonItem = item2;
     } else if (_type==5){
         //优先未做题考试
-        NSArray *arr = [MyDataManager getData:Answer];
-        NSMutableArray *arraytemp = [NSMutableArray arrayWithArray:arr];
+        NSArray *arrall = [MyDataManager getData:Answer];
+        NSArray *rights = [SaveDataManager getAnswerRightQuestion];
+        NSArray *wrongs = [SaveDataManager getAnswerWrongQuestion];
+        NSMutableArray *arraynoanswer = [NSMutableArray arrayWithArray:arrall];//没做的题
+        NSMutableArray *arraywrong = [[NSMutableArray alloc] init];//做错的题
+        NSMutableArray *arrayright = [[NSMutableArray alloc] init];//做对的题
+        for (NSNumber *num in wrongs) {
+            [arraynoanswer removeObject:[arrall objectAtIndex:[num intValue]-1]];
+            [arraywrong addObject:[arrall objectAtIndex:[num intValue]-1]];
+        }
+        for (NSNumber *num in rights) {
+            [arraynoanswer removeObject:[arrall objectAtIndex:[num intValue]-1]];
+            [arrayright addObject:[arrall objectAtIndex:[num intValue]-1]];
+        }
+        //优先从未做题选,然后从错题选,再从对题选
         for (int i=0; i<100; i++) {
-            int index = arc4random()%arraytemp.count;
-            [_arrayQuestions addObject:arraytemp[index]];
-            [arraytemp removeObject:arraytemp[index]];
+            int index = arc4random()%arraynoanswer.count;
+            [_arrayQuestions addObject:arraynoanswer[index]];
+            [arraynoanswer removeObject:arraynoanswer[index]];
+            if (arraynoanswer.count==0) {
+                //未做题已选完
+                break;
+            }
+        }
+        if (_arrayQuestions.count<100) {
+            //不够100题,再从错题中选
+            int leftnum = 100-_arrayQuestions.count;
+            for (int i=0; i<leftnum; i++) {
+                int index = arc4random()%arraywrong.count;
+                [_arrayQuestions addObject:arraywrong[index]];
+                [arraywrong removeObject:arraywrong[index]];
+                if (arraywrong.count==0) {
+                    //错题已选完
+                    break;
+                }
+            }
+        }
+        if (_arrayQuestions.count<100) {
+            //还不够100题,再从对题中选
+            int leftnum = 100 - _arrayQuestions.count;
+            for (int i=0; i<leftnum; i++) {
+                int index = arc4random()%arrayright.count;
+                [_arrayQuestions addObject:arrayright[index]];
+                [arrayright removeObject:arrayright[index]];
+                if (arrayright.count==0) {
+                    //错题已选完
+                    break;
+                }
+            }
         }
         _answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 -80) andDataArray:_arrayQuestions];
         UIBarButtonItem *item1 = [[UIBarButtonItem alloc] init];
