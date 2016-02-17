@@ -53,7 +53,7 @@
     if (indexPath.row%2!=0) {
         cell.backgroundColor=[UIColor colorWithRed:204/255 green:1 blue:1 alpha:0.5];
     }
-    TestModel *model = (TestModel *)_arrTestScores[indexPath.row];
+    TestModel *model = (TestModel *)_arrTestScores[_arrTestScores.count -1 - indexPath.row];
     cell.labelScore.text = [NSString stringWithFormat:@"分数:%d", [model.testScore intValue]];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"MM月dd日 HH点mm分"];
