@@ -183,7 +183,7 @@
             }
         }
         if (_arrayQuestions.count==0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有错题" message:@"你还没有做错过题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有错题" message:@"你还没有做错的题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
             alert.tag = 103;
             alert.delegate = self;
             [alert show];
@@ -302,7 +302,7 @@
         lab.textAlignment = NSTextAlignmentCenter;
         lab.font = [UIFont systemFontOfSize:12];
         //第一题可能已经收藏
-        if (i==2) {
+        if (i==2 && _arrayQuestions.count>2) {
             AnswerModel *model = [_arrayQuestions objectAtIndex:0];
             NSArray *collectArr = [SaveDataManager getcollectQuestion];
             for (NSNumber *num in collectArr) {

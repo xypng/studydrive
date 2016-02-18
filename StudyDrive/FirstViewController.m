@@ -97,7 +97,13 @@
         {
             MyTestScoresViewController *con = [[MyTestScoresViewController alloc] init];
             con.title = @"我的成绩";
-            con.arrTestScores = [SaveDataManager getTestScores];
+            NSArray *arr = [SaveDataManager getTestScores];
+            if (arr.count==0) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有成绩" message:@"你还没有成绩" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alert show];
+                return;
+            }
+            con.arrTestScores = arr;
             UIBarButtonItem * item = [[UIBarButtonItem alloc] init];
             item.title = @"";
             self.navigationItem.backBarButtonItem = item;
