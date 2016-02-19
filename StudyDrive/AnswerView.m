@@ -43,23 +43,27 @@
             [_answeredArrar addObject:@0];
         }
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView.contentSize = CGSizeMake(SIZE.width*1, 0);
         _scrollView.delegate = self;
         _leftTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
         _leftTableView.dataSource = self;
         _leftTableView.delegate = self;
-        _mainTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
-        _mainTableView.dataSource = self;
-        _mainTableView.delegate = self;
-        _rightTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
-        _rightTableView.dataSource = self;
-        _rightTableView.delegate = self;
-        _scrollView.pagingEnabled = YES;
-        _scrollView.bounces = NO;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.showsVerticalScrollIndicator = NO;
-        if (_dataArray.count > 1) {
+        if (_dataArray.count>1) {
+            _mainTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
+            _mainTableView.dataSource = self;
+            _mainTableView.delegate = self;
             _scrollView.contentSize = CGSizeMake(SIZE.width*2, 0);
         }
+        if (_dataArray.count>2) {
+            _rightTableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped];
+            _rightTableView.dataSource = self;
+            _rightTableView.delegate = self;
+        }
+        _scrollView.pagingEnabled = YES;
+        _scrollView.bounces = NO;
+        _scrollView.showsHorizontalScrollIndicator = YES;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.directionalLockEnabled = YES;
         [self creatView];
     }
     return self;
@@ -67,37 +71,62 @@
 
 - (void)creatView {
     _leftTableView.frame = CGRectMake(0, 0, SIZE.width, SIZE.height);
-    _mainTableView.frame = CGRectMake(SIZE.width, 0, SIZE.width, SIZE.height);
-    _rightTableView.frame = CGRectMake(SIZE.width*2, 0, SIZE.width, SIZE.height);
     [_scrollView addSubview:_leftTableView];
-    [_scrollView addSubview:_mainTableView];
-    [_scrollView addSubview:_rightTableView];
+    if (_dataArray.count>1) {
+        _mainTableView.frame = CGRectMake(SIZE.width, 0, SIZE.width, SIZE.height);
+        [_scrollView addSubview:_mainTableView];
+    }
+    if (_dataArray.count>2) {
+        _rightTableView.frame = CGRectMake(SIZE.width*2, 0, SIZE.width, SIZE.height);
+        [_scrollView addSubview:_rightTableView];
+    }
     [self addSubview:_scrollView];
 }
 
 #pragma mark - scrollView delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"contentOffset:(%f,%f)", scrollView.contentOffset.x, scrollView.contentOffset.y);
+    NSLog(@"contentSize.with,%f", _scrollView.contentSize.width);
     CGPoint point = scrollView.contentOffset;
     int page = point.x/SIZE.width;
-    [self.delegate scrollViewDidEndDecelerating:page];
-    if (page < _dataArray.count-1 && page>0) {
-        _scrollView.contentSize = CGSizeMake(point.x + SIZE.width*2, 0);
-        _mainTableView.frame = CGRectMake(point.x, 0, SIZE.width, SIZE.height);
-        _leftTableView.frame = CGRectMake(point.x-SIZE.width, 0, SIZE.width, SIZE.height);
-        _rightTableView.frame = CGRectMake(point.x+SIZE.width, 0, SIZE.width, SIZE.height);
-    }
     //垂直方向上拉动也会触发这个事件,而且会导致page为0
     if (page==0&& (_scrollView.contentSize.width/SIZE.width)>3 ) {
         return;
     }
     _currentPage = page;
-    [self reloadData];
+    [self.delegate scrollViewDidEndDecelerating:page];
+    if (_dataArray.count<3) {
+        return;
+    }
+    if (page < _dataArray.count-1 && page>0) {
+        _scrollView.contentSize = CGSizeMake(point.x + SIZE.width*2, 0);
+        _leftTableView.frame = CGRectMake(point.x-SIZE.width, 0, SIZE.width, SIZE.height);
+        _mainTableView.frame = CGRectMake(point.x, 0, SIZE.width, SIZE.height);
+        _rightTableView.frame = CGRectMake(point.x+SIZE.width, 0, SIZE.width, SIZE.height);
+        [self reloadData];
+    } else if (page == _dataArray.count-1){
+        _scrollView.contentSize = CGSizeMake(point.x+SIZE.width, 0);
+        _leftTableView.frame = CGRectMake(point.x-SIZE.width*2, 0, SIZE.width, SIZE.height);
+        _mainTableView.frame = CGRectMake(point.x-SIZE.width, 0, SIZE.width, SIZE.height);
+        _rightTableView.frame = CGRectMake(point.x, 0, SIZE.width, SIZE.height);
+        [self reloadData];
+    } else if (page==0) {
+        _scrollView.contentSize = CGSizeMake(point.x+SIZE.width*2, 0);
+        _leftTableView.frame = CGRectMake(point.x, 0, SIZE.width, SIZE.height);
+        _mainTableView.frame = CGRectMake(point.x+SIZE.width, 0, SIZE.width, SIZE.height);
+        _rightTableView.frame = CGRectMake(point.x+SIZE.width*2, 0, SIZE.width, SIZE.height);
+        [self reloadData];
+    }
 }
 
 - (void)reloadData {
     [_leftTableView reloadData];
-    [_rightTableView reloadData];
-    [_mainTableView reloadData];
+    if (_dataArray.count>1) {
+        [_mainTableView reloadData];
+    }
+    if (_dataArray.count>2) {
+        [_rightTableView reloadData];
+    }
 }
 
 #pragma mark - tableview delegate
@@ -319,7 +348,11 @@
     }else if(tableView==_mainTableView && _currentPage>0 && _currentPage<_dataArray.count-1) {
         model = _dataArray[_currentPage];
     }else if(tableView==_mainTableView && _currentPage==_dataArray.count-1) {
-        model = _dataArray[_currentPage-1];
+        if (_dataArray.count==2) {
+            model = _dataArray[_currentPage];
+        } else {
+            model = _dataArray[_currentPage-1];
+        }
     }else if(tableView==_rightTableView && _currentPage<_dataArray.count-1) {
         model = _dataArray[_currentPage+1];
     }else if(tableView==_rightTableView && _currentPage==_dataArray.count-1) {

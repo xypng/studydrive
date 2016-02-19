@@ -497,6 +497,10 @@
 - (void)sheetViewClick:(int)index {
     UIScrollView *scrollView = _answerView->_scrollView;
     scrollView.contentOffset = CGPointMake(scrollView.frame.size.width*index, 0);
+    CGSize size;
+    size.height = self.view.frame.size.height;
+    size.width = self.view.frame.size.width*(index+1);
+    scrollView.contentSize = size;
     [scrollView.delegate scrollViewDidEndDecelerating:scrollView];
     UILabel *lab = (UILabel *)[self.view viewWithTag:501];
     lab.text = [NSString stringWithFormat:@"%d/%d", index+1, _arrayQuestions.count];
