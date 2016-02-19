@@ -31,6 +31,22 @@
     NSNumber *nNoAnswer = [NSNumber numberWithFloat:(float)(all.count-rights.count-wrongs.count)];
     _myScoreGraphs = [[MyScoreGraphs alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64-100) andDatas:@[nWrongs,nRights,nNoAnswer] andTitles:@[@"答错题",@"答对题",@"未答题"] andColors:@[[UIColor redColor],[UIColor greenColor],[UIColor grayColor]]];
     [self.view addSubview:_myScoreGraphs];
+    UIButton *btnClear = [UIButton buttonWithType:UIButtonTypeSystem];
+    NSLog(@"%f", self.view.frame.size.height-25-20);
+    NSLog(@"%f", (self.view.frame.size.width-100)/2);
+    btnClear.frame = CGRectMake((self.view.frame.size.width-120)/2, self.view.frame.size.height-25-20, 120, 25);
+    btnClear.layer.masksToBounds = YES;
+    btnClear.layer.cornerRadius = 4;
+    [btnClear setTitle:@"清空所有答题记录" forState:UIControlStateNormal];
+    [btnClear addTarget:self action:@selector(clearData:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnClear];
+}
+
+- (void)clearData:(UIButton *)btn {
+    [SaveDataManager clearAnswerData];
+    NSArray *all = [MyDataManager getData:Answer];
+    _myScoreGraphs.datas = @[@0,@0,[NSNumber numberWithInt:all.count]];
+    [_myScoreGraphs setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning {

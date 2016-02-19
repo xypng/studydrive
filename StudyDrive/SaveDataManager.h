@@ -14,6 +14,7 @@
 + (NSArray *)getAnswerWrongQuestion;
 + (void)addAnswerWrongQuestion:(int)mid;
 + (void)addAnswerRightQuestion:(int)mid;
++ (void)clearAnswerData;
 
 + (NSArray *)getcollectQuestion;
 + (void)addcollectQuestion:(int)mid;

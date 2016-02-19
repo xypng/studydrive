@@ -16,6 +16,7 @@
 
 @implementation SaveDataManager
 
+//得到答错题记录
 + (NSArray *)getAnswerWrongQuestion {
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:WRONGQUESTION];
     if (arr!=nil) {
@@ -25,6 +26,7 @@
     }
 }
 
+//得到答对题记录
 + (NSArray *)getAnswerRightQuestion {
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:RIGHTQUESTION];
     if (arr!=nil) {
@@ -34,6 +36,7 @@
     }
 }
 
+//添加答错题记录
 + (void)addAnswerWrongQuestion:(int)mid {
     NSArray *arrWrongs = [[NSUserDefaults standardUserDefaults] objectForKey:WRONGQUESTION];
     NSArray *arrRights = [[NSUserDefaults standardUserDefaults] objectForKey:RIGHTQUESTION];
@@ -62,6 +65,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//添加答对题记录
 + (void)addAnswerRightQuestion:(int)mid {
     NSArray *arrWrongs = [[NSUserDefaults standardUserDefaults] objectForKey:WRONGQUESTION];
     NSArray *arrRights = [[NSUserDefaults standardUserDefaults] objectForKey:RIGHTQUESTION];
@@ -92,7 +96,16 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//清空答题记录
++ (void)clearAnswerData {
+    NSMutableArray *muArrWrongs = [[NSMutableArray alloc] init];
+    NSMutableArray *muArrRights = [[NSMutableArray alloc] init];
+    [[NSUserDefaults standardUserDefaults] setObject:muArrWrongs forKey:WRONGQUESTION];
+    [[NSUserDefaults standardUserDefaults] setObject:muArrRights forKey:RIGHTQUESTION];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
+//得到收藏的题
 + (NSArray *)getcollectQuestion {
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:COLLECTQUESTION];
     if (arr!=nil) {
@@ -102,6 +115,7 @@
     }
 }
 
+//添加收藏题
 + (void)addcollectQuestion:(int)mid {
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:COLLECTQUESTION];
     NSMutableArray *muArr = [[NSMutableArray alloc] initWithArray:arr];
@@ -116,6 +130,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//移除收藏题
 + (void)removecollectQuestion:(int)mid {
     NSArray *arr = [[NSUserDefaults standardUserDefaults] objectForKey:COLLECTQUESTION];
     NSMutableArray *muArr = [[NSMutableArray alloc] initWithArray:arr];
@@ -130,6 +145,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//添加模拟考试成绩
 + (void)addTestScore:(TestModel *)testModel{
     NSData *data1 = [[NSUserDefaults standardUserDefaults] objectForKey:TESTSCORES];
     NSArray * arr = [NSKeyedUnarchiver unarchiveObjectWithData:data1];
@@ -140,6 +156,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//得到模拟考试成绩
 + (NSArray *)getTestScores{
     NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:TESTSCORES];
     NSArray * array = [NSKeyedUnarchiver unarchiveObjectWithData:data];

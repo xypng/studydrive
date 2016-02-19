@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MyScoreGraphs : UIView
+@property(nonatomic,strong) NSArray *datas;
+@property(nonatomic,strong) NSArray *colors;
+@property(nonatomic,strong) NSArray *titles;
 - (instancetype)initWithFrame:(CGRect)frame andDatas:(NSArray *)datas andTitles:(NSArray *)titles andColors:(NSArray *)color;
 @end

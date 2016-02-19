@@ -9,18 +9,11 @@
 #import "MyScoreGraphs.h"
 
 @implementation MyScoreGraphs
-{
-    NSMutableArray *_dataArray;
-    NSArray *_colors;
-    NSArray *_titles;
-    NSArray *_datas;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame andDatas:(NSArray *)datas andTitles:(NSArray *)titles andColors:(NSArray *)colors {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        _dataArray = [[NSMutableArray alloc] init];
         _colors = colors;
         _titles = titles;
         _datas = datas;
@@ -29,13 +22,6 @@
         }
         if (datas.count!=titles.count) {
             return self;
-        }
-        float sum = 0;
-        for (NSNumber *data in datas) {
-            sum += [data floatValue];
-        }
-        for (NSNumber *data in datas) {
-            [_dataArray addObject:[NSNumber numberWithFloat:[data floatValue]/sum]];
         }
         for (int i=0; i<_titles.count; i++) {
             UIColor *color = colors[i];
@@ -52,8 +38,39 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    NSMutableArray *_dataArray = [[NSMutableArray alloc] init];
+    if (_datas.count!=_titles.count) {
+        return;
+    }
+    if (_datas.count!=_titles.count) {
+        return;
+    }
+    float sum = 0;
+    for (NSNumber *data in _datas) {
+        sum += [data floatValue];
+    }
+    for (NSNumber *data in _datas) {
+        [_dataArray addObject:[NSNumber numberWithFloat:[data floatValue]/sum]];
+    }
     if (_dataArray.count==0) {
         return;
+    }
+    for(UIView *mylabelview in [self subviews])
+    {
+        if ([mylabelview isKindOfClass:[UILabel class]]) {
+            [mylabelview removeFromSuperview];
+        }
+    }
+    for (int i=0; i<_titles.count; i++) {
+        UIColor *color = _colors[i];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 10+12*i, 40, 5)];
+        view.backgroundColor = color;
+        UILabel *lable = [[UILabel alloc] initWithFrame:CGRectMake(52, 3+12*i, 100, 20)];
+        lable.text = [NSString stringWithFormat:@"%@:%.0f", _titles[i], [_datas[i] floatValue]];
+        lable.font = [UIFont systemFontOfSize:10];
+        lable.tag = 101 + i;
+        [self addSubview:lable];
+        [self addSubview:view];
     }
     float offset = 0.0;
     for (int i=0; i<_dataArray.count; i++) {
