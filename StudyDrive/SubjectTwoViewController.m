@@ -9,6 +9,8 @@
 #import "SubjectTwoViewController.h"
 #import "SubjectTwoTableViewCell.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVKit/AVKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface SubjectTwoViewController ()<UITableViewDataSource, UITableViewDelegate>
 {
@@ -60,9 +62,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *path = [[NSBundle mainBundle] pathForResource:@"shipin" ofType:@"mp4"];
     NSURL *url = [NSURL fileURLWithPath:path];
-    MPMoviePlayerViewController *mpvc = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
-    mpvc.moviePlayer.shouldAutoplay = YES;
-    [self.navigationController pushViewController:mpvc animated:YES];
+    AVPlayerViewController *player = [[AVPlayerViewController alloc]init];
+    player.player = [[AVPlayer alloc]initWithURL:url];
+    [player.player play];
+    [self presentViewController:player animated:YES completion:nil];
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"shipin" ofType:@"mp4"];
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    MPMoviePlayerViewController *mpvc = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+//    mpvc.moviePlayer.shouldAutoplay = YES;
+//    [self.navigationController pushViewController:mpvc animated:YES];
 }
 
 /*
