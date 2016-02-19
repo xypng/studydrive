@@ -77,7 +77,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     AnswerViewController *con = [[AnswerViewController alloc] init];
     if (_type==1) {
-        con.number = [NSString stringWithFormat:@"%d", indexPath.row+1];
+        con.number = [NSString stringWithFormat:@"%ld", indexPath.row+1];
         con.title = @"章节练习";
         con.type = 0;//章节练习
     } else if (_type==2) {

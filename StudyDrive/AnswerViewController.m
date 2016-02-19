@@ -183,10 +183,21 @@
             }
         }
         if (_arrayQuestions.count==0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有错题" message:@"你还没有做错的题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-            alert.tag = 103;
-            alert.delegate = self;
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有错题"
+                                                                           message:@"你还没有做错的题目"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"哦" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                   [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有错题" message:@"你还没有做错的题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+//            alert.tag = 103;
+//            alert.delegate = self;
+//            [alert show];
             return;
         }
         _answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 -80) andDataArray:_arrayQuestions];
@@ -203,10 +214,20 @@
             }
         }
         if (_arrayQuestions.count==0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有收藏题" message:@"你还没有收藏的题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-            alert.tag = 104;
-            alert.delegate = self;
-            [alert show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有收藏题"
+                                                                           message:@"你还没有收藏的题目"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"哦" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有收藏题" message:@"你还没有收藏的题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+//            alert.tag = 104;
+//            alert.delegate = self;
+//            [alert show];
             return;
         }
         _answerView = [[AnswerView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64 -80) andDataArray:_arrayQuestions];
@@ -219,16 +240,43 @@
     switch (item.tag) {
         case 301:
         {
-            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"返回" message:@"时间还很多,真的离开吗?" delegate:self cancelButtonTitle:@"不,谢谢!" otherButtonTitles:@"是,我要离开.", nil];
-            av.tag = 101;
-            [av show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"返回"
+                                                                           message:@"时间还很多,真的离开吗?"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"不,谢谢!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            }];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"是,我要离开." style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alert addAction:defaultAction];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+//            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"返回" message:@"时间还很多,真的离开吗?" delegate:self cancelButtonTitle:@"不,谢谢!" otherButtonTitles:@"是,我要离开.", nil];
+//            av.tag = 101;
+//            [av show];
         }
             break;
         case 302:
         {
-            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"交卷" message:@"你要交卷吗?" delegate:self cancelButtonTitle:@"不,谢谢!" otherButtonTitles:@"是,我要交卷.", nil];
-            av.tag = 102;
-            [av show];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"交卷"
+                                                                           message:@"你要交卷吗?"
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"不,谢谢!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            }];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"是,我要交卷." style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                [_saveTestScoreDelegate saveTestScore:[self getWriteAnswerScore]];
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alert addAction:defaultAction];
+            [alert addAction:okAction];
+            [self presentViewController:alert animated:YES completion:nil];
+//            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"交卷" message:@"你要交卷吗?" delegate:self cancelButtonTitle:@"不,谢谢!" otherButtonTitles:@"是,我要交卷.", nil];
+//            av.tag = 102;
+//            [av show];
         }
             break;
         default:
@@ -297,9 +345,19 @@
     if (_seconds==0) {
         [timer invalidate];
         timer = nil;
-        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"交卷" message:@"时间到了,你必须交卷了" delegate:self cancelButtonTitle:@"哦!" otherButtonTitles:nil, nil];
-        av.tag = 105;
-        [av show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"交卷"
+                                                                       message:@"时间到了,你必须交卷了"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"哦!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                [_saveTestScoreDelegate saveTestScore:[self getWriteAnswerScore]];
+        }];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+//        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"交卷" message:@"时间到了,你必须交卷了" delegate:self cancelButtonTitle:@"哦!" otherButtonTitles:nil, nil];
+//        av.tag = 105;
+//        [av show];
     }
 }
 
@@ -534,6 +592,7 @@
 }
 
 #pragma mark alertview delegate
+/*
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (alertView.tag) {
         case 101:
@@ -579,6 +638,7 @@
             break;
     }
 }
+ */
 
 /*
 #pragma mark - Navigation

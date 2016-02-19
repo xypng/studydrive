@@ -99,8 +99,17 @@
             con.title = @"我的成绩";
             NSArray *arr = [SaveDataManager getTestScores];
             if (arr.count==0) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有成绩" message:@"你还没有成绩" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
-                [alert show];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"没有成绩"
+                                                                               message:@"你还没有成绩"
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"哦!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                }];
+                
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有成绩" message:@"你还没有成绩" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+//                [alert show];
                 return;
             }
             con.arrTestScores = arr;
