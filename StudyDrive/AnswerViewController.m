@@ -247,24 +247,29 @@
         switch (btn.tag) {
             case 101:
             {
-                _answerView.answeredArrar = _answerView.tempAnsweredArrar;
-                self.navigationItem.rightBarButtonItem.title = @"答题模式";
-                [_answerView reloadData];
+                if ([self.navigationItem.rightBarButtonItem.title isEqualToString:@"背题模式"]) {
+                    _answerView.answeredArrar = [_answerView.tempAnsweredArrar mutableCopy];
+                    self.navigationItem.rightBarButtonItem.title = @"答题模式";
+                    [_answerView reloadData];
+                }
             }
                 break;
             case 102:
             {
-                _answerView.tempAnsweredArrar = [_answerView.answeredArrar copy];
-                for (int i=0; i<_answerView.answeredArrar.count; i++) {
-                    AnswerModel *model = _arrayQuestions[i];
-                    if ([model.mtype intValue]==1) {
-                        _answerView.answeredArrar[i] = [NSNumber numberWithInt:(int)([model.manswer characterAtIndex:0]-'A'+1)];
-                    } else {
-                        _answerView.answeredArrar[i] = [NSNumber numberWithInt:([model.manswer isEqualToString:@"对"]?1:2)];
+                if ([self.navigationItem.rightBarButtonItem.title isEqualToString:@"答题模式"]) {
+                    _answerView.tempAnsweredArrar = [_answerView.answeredArrar mutableCopy];
+                    for (int i=0; i<_answerView.answeredArrar.count; i++) {
+                        AnswerModel *model = _arrayQuestions[i];
+                        if ([model.mtype intValue]==1) {
+                            _answerView.answeredArrar[i] = [NSNumber numberWithInt:(int)([model.manswer characterAtIndex:0]-'A'+1)];
+                        } else {
+                            _answerView.answeredArrar[i] = [NSNumber numberWithInt:([model.manswer isEqualToString:@"对"]?1:2)];
+                        }
                     }
+                    self.navigationItem.rightBarButtonItem.title = @"背题模式";
+                    [_answerView reloadData];
+                    
                 }
-                self.navigationItem.rightBarButtonItem.title = @"背题模式";
-                [_answerView reloadData];
             }
                 break;
             default:

@@ -56,6 +56,11 @@
       </ContextState>
       <ContextState
          contextName = "-[AnswerView tableView:didSelectRowAtIndexPath:]:AnswerView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[AnswerView getFitAnswerModel:]:AnswerView.m">
