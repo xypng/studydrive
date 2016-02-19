@@ -43,11 +43,21 @@
 }
 
 - (void)clearData:(UIButton *)btn {
-    [SaveDataManager clearAnswerData];
-    NSArray *all = [MyDataManager getData:Answer];
-    _myScoreGraphs.datas = @[@0,@0,[NSNumber numberWithInt:all.count]];
-    [_myScoreGraphs setNeedsDisplay];
-}
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"真的要清空吗?"
+                                                                   message:@"清空不可撤销,你真的要清空你的答题记录吗?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"不,要" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+    }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"是,我要清空." style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [SaveDataManager clearAnswerData];
+        NSArray *all = [MyDataManager getData:Answer];
+        _myScoreGraphs.datas = @[@0,@0,[NSNumber numberWithInt:all.count]];
+        [_myScoreGraphs setNeedsDisplay];
+    }];
+    [alert addAction:defaultAction];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
