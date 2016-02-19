@@ -11,7 +11,7 @@ typedef enum {
     testModel,
     lookingModel
 }SelectModel;
-typedef void (^SelectTouch)();
+typedef void (^SelectTouch)(UIButton *btn);
 @interface SelectModelView : UIView
 @property(nonatomic,assign) SelectModel model;
 - (instancetype)initWithFrame:(CGRect)frame andTouch:(SelectTouch)touch;

@@ -33,10 +33,10 @@
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self creatSelectModelView];
     [self creatAnswerView];
     if (_type!=4&&_type!=5) {
         [self creatToolBarView];
+        [self creatSelectModelView];
     }else {
         [self creatToolBarViewNoViewAnswer];
         [self creatTimeDown];
@@ -203,7 +203,7 @@
             }
         }
         if (_arrayQuestions.count==0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有收藏题" message:@"你还没有收藏过题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有收藏题" message:@"你还没有收藏的题目" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
             alert.tag = 104;
             alert.delegate = self;
             [alert show];
@@ -243,8 +243,36 @@
 }
 
 - (void)creatSelectModelView {
-    _selectModelView = [[SelectModelView alloc] initWithFrame:self.view.frame andTouch:^{
-        
+    _selectModelView = [[SelectModelView alloc] initWithFrame:self.view.frame andTouch:^(UIButton *btn) {
+        switch (btn.tag) {
+            case 101:
+            {
+                _answerView.answeredArrar = _answerView.tempAnsweredArrar;
+                self.navigationItem.rightBarButtonItem.title = @"答题模式";
+                [_answerView reloadData];
+            }
+                break;
+            case 102:
+            {
+                _answerView.tempAnsweredArrar = [_answerView.answeredArrar copy];
+                for (int i=0; i<_answerView.answeredArrar.count; i++) {
+                    AnswerModel *model = _arrayQuestions[i];
+                    if ([model.mtype intValue]==1) {
+                        _answerView.answeredArrar[i] = [NSNumber numberWithInt:(int)([model.manswer characterAtIndex:0]-'A'+1)];
+                    } else {
+                        _answerView.answeredArrar[i] = [NSNumber numberWithInt:([model.manswer isEqualToString:@"对"]?1:2)];
+                    }
+                }
+                self.navigationItem.rightBarButtonItem.title = @"背题模式";
+                [_answerView reloadData];
+            }
+                break;
+            default:
+                break;
+        }
+        [UIView animateWithDuration:0.3 animations:^{
+            _selectModelView.alpha = 0;
+        }];
     }];
     _selectModelView.alpha = 0;
     [self.view addSubview:_selectModelView];

@@ -31,8 +31,10 @@
         btn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
         btn.layer.masksToBounds = YES;
         btn.layer.cornerRadius = 10;
+        btn.tag = 101+i;
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(25, 15, 70, 70)];
         imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d11q",i+1]];
+        [btn addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
         [btn addSubview:imgView];
         
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 90, 120, 35)];
@@ -43,6 +45,10 @@
         [btn addSubview:lab];
         [self addSubview:btn];
     }
+}
+
+- (void)click:(UIButton *)btn {
+    block(btn);
 }
 
 @end
