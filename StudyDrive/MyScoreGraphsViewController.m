@@ -32,10 +32,10 @@
     _myScoreGraphs = [[MyScoreGraphs alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64-100) andDatas:@[nWrongs,nRights,nNoAnswer] andTitles:@[@"答错题",@"答对题",@"未答题"] andColors:@[[UIColor redColor],[UIColor greenColor],[UIColor grayColor]]];
     [self.view addSubview:_myScoreGraphs];
     UIButton *btnClear = [UIButton buttonWithType:UIButtonTypeSystem];
-    btnClear.frame = CGRectMake((self.view.frame.size.width-120)/2, self.view.frame.size.height-25-20, 120, 25);
+    btnClear.frame = CGRectMake((self.view.frame.size.width-130)/2, self.view.frame.size.height-25-20, 130, 25);
     btnClear.layer.masksToBounds = YES;
     btnClear.layer.cornerRadius = 4;
-    btnClear.backgroundColor = [UIColor blueColor];
+    btnClear.backgroundColor = [UIColor cyanColor];
     [btnClear setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnClear setTitle:@"清空所有答题记录" forState:UIControlStateNormal];
     [btnClear addTarget:self action:@selector(clearData:) forControlEvents:UIControlEventTouchUpInside];
