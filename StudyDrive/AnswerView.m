@@ -61,6 +61,9 @@
         }
         _scrollView.pagingEnabled = YES;
         _scrollView.bounces = NO;
+        _leftTableView.bounces = NO;
+        _rightTableView.bounces = NO;
+        _mainTableView.bounces = NO;
         _scrollView.showsHorizontalScrollIndicator = YES;
         _scrollView.showsVerticalScrollIndicator = NO;
         _scrollView.directionalLockEnabled = YES;
@@ -89,10 +92,10 @@
     NSLog(@"contentSize.with,%f", _scrollView.contentSize.width);
     CGPoint point = scrollView.contentOffset;
     int page = point.x/SIZE.width;
-    //垂直方向上拉动也会触发这个事件,而且会导致page为0
-    if (page==0&& (_scrollView.contentSize.width/SIZE.width)>3 ) {
-        return;
-    }
+//    //垂直方向上拉动也会触发这个事件,而且会导致page为0
+//    if (page==0&& (_scrollView.contentSize.width/SIZE.width)>3 ) {
+//        return;
+//    }
     _currentPage = page;
     [self.delegate scrollViewDidEndDecelerating:page];
     if (_dataArray.count<3) {
