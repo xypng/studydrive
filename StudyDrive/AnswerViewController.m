@@ -20,6 +20,7 @@
     SelectModelView *_selectModelView;
     SeetView *_sheetView;
     int _seconds;
+    NSArray *_arrayCollectionQuestion;
 }
 @end
 
@@ -42,6 +43,7 @@
         [self creatTimeDown];
     }
     [self creatSheetView];
+    _arrayCollectionQuestion = [SaveDataManager getcollectQuestion];
 }
 
 - (void)creatAnswerView {
@@ -470,12 +472,14 @@
             if ([lab.text isEqualToString:@"收藏本题"]) {
                 AnswerModel *model = [_answerView getFitAnswerModel];
                 [SaveDataManager addcollectQuestion:[model.mid intValue]];
+                _arrayCollectionQuestion = [SaveDataManager getcollectQuestion];
                 [button setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateNormal];
                 [button setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateHighlighted];
                 lab.text = @"取消收藏";
             } else if ([lab.text isEqualToString:@"取消收藏"]) {
                 AnswerModel *model = [_answerView getFitAnswerModel];
                 [SaveDataManager removecollectQuestion:[model.mid intValue]];
+                _arrayCollectionQuestion = [SaveDataManager getcollectQuestion];
                 UILabel *lab = [self.view viewWithTag:503];
                 [button setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateNormal];
                 [button setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateHighlighted];
@@ -526,13 +530,13 @@
     button.backgroundColor = [UIColor orangeColor];
     
     AnswerModel *model = [_arrayQuestions objectAtIndex:index];
-    NSArray *collectArr = [SaveDataManager getcollectQuestion];
+//    NSArray *collectArr = [SaveDataManager getcollectQuestion];
     UIButton *btncollet = (UIButton *)[self.view viewWithTag:303];
     UILabel *labcollect = (UILabel *)[self.view viewWithTag:503];
     [btncollet setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateNormal];
     [btncollet setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateHighlighted];
     labcollect.text = @"收藏本题";
-    for (NSNumber *num in collectArr) {
+    for (NSNumber *num in _arrayCollectionQuestion) {
         if ([num intValue]==[model.mid intValue]) {
             [btncollet setBackgroundImage:[UIImage imageNamed:@"18-2"] forState:UIControlStateNormal];
             [btncollet setBackgroundImage:[UIImage imageNamed:@"18"] forState:UIControlStateHighlighted];
